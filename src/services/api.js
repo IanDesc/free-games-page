@@ -1,10 +1,5 @@
 import axios, * as others from "axios";
 
-const baseURL = "https://www.freetogame.com/api/games";
-const headers = {
-  "Content-Type": "application/json",
-};
-
 const options = {
   method: "GET",
   url: "https://free-to-play-games-database.p.rapidapi.com/api/games",
@@ -14,13 +9,14 @@ const options = {
   },
 };
 
-const getData = async () => {
+const getDataFromAPI = async () => {
   try {
     const response = await axios.request(options);
     console.log(response.data);
+    return response.data;
   } catch (error) {
     console.error(error);
   }
 };
 
-export default getData;
+export default getDataFromAPI;
