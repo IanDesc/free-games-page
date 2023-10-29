@@ -21,7 +21,7 @@ function App({ games, setGames, loading, setLoading, success, setsuccess }) {
 
   useEffect(() => {
     getGamesList();
-  }, []); // Add an empty dependency array to run the effect only once
+  });
 
   const handleSearch = (searchQuery) => {
     setQuery(searchQuery);
@@ -51,7 +51,18 @@ function App({ games, setGames, loading, setLoading, success, setsuccess }) {
     <div className="flex flex-col items-center bg-gradient-to-tr from-gray-800 to-slate-900 px-0 py-20">
       <SearchBar onSearch={handleSearch} />
       <DropdownMenu
-        genres={["All", "MMORPG", "Strategy", "Battle Royale", "Shooter", "Sports", "Fantasy", "Racing", "Card", "Fighting"]} 
+        genres={[
+          "All",
+          "MMORPG",
+          "Strategy",
+          "Battle Royale",
+          "Shooter",
+          "Sports",
+          "Fantasy",
+          "Racing",
+          "Card",
+          "Fighting",
+        ]}
         selectedGenre={selectedGenre}
         onGenreChange={handleGenreChange}
       />
