@@ -5,14 +5,18 @@ import SearchBar from "./components/SearchBar";
 import GamesList from "./components/GamesList";
 import { useState } from "react";
 import GameModal from "./components/GameModal";
+import { GamesListContext } from "./contexts/GamesContext";
 
-function App() {
-  const [games, setGames] = useState([]);
+function App({ games, setGames, loading, setLoading, success, setsuccess }) {
   const [query, setQuery] = useState("");
   const [openedGame, setOpenedGame] = useState(null);
 
   const getGamesList = async () => {
-    setGames(await getDataFromAPI());
+    setLoading(true);
+    const gamesData = await getDataFromAPI();
+    setGames(gamesData);
+    setLoading(false);
+    setsuccess(true);
   };
   useEffect(() => {
     getGamesList();
@@ -43,4 +47,4 @@ function App() {
   );
 }
 
-export default App;
+export default GamesListContext(App);
