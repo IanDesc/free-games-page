@@ -84,12 +84,7 @@ function App({ games, setGames, loading, setLoading, success, setsuccess }) {
         selectedGenre={selectedGenre}
         onGenreChange={handleGenreChange}
       />
-      <GamesList
-        games={gamesToDisplay}
-        onGameClick={handleGameClick}
-        currentPage={currentPage}
-        gamesPerPage={gamesPerPage}
-      />
+      <GamesList games={gamesToDisplay} onGameClick={handleGameClick} />
       {openedGame && <GameModal game={openedGame} onHide={handleCloseModal} />}
 
       <CustomPagination
