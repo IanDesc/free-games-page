@@ -4,12 +4,24 @@ import SearchBar from "./components/SearchBar";
 import GamesList from "./components/GamesList";
 import GameModal from "./components/GameModal";
 import { GamesListContext } from "./contexts/GamesContext";
-import DropdownMenu from "./components/DropdownMenu"; // Import the DropdownMenu component
+import DropdownMenu from "./components/DropdownMenu";
 
 function App({ games, setGames, loading, setLoading, success, setsuccess }) {
   const [query, setQuery] = useState("");
   const [openedGame, setOpenedGame] = useState(null);
-  const [selectedGenre, setSelectedGenre] = useState("All"); // Initialize selectedGenre
+  const [selectedGenre, setSelectedGenre] = useState("All");
+  const genres = [
+    "All",
+    "MMORPG",
+    "Strategy",
+    "Battle Royale",
+    "Shooter",
+    "Sports",
+    "Fantasy",
+    "Racing",
+    "Card",
+    "Fighting",
+  ];
 
   const getGamesList = async () => {
     setLoading(true);
@@ -21,7 +33,7 @@ function App({ games, setGames, loading, setLoading, success, setsuccess }) {
 
   useEffect(() => {
     getGamesList();
-  }, []); // Add an empty dependency array to run the effect only once
+  }, []);
 
   const handleSearch = (searchQuery) => {
     setQuery(searchQuery);
@@ -51,7 +63,7 @@ function App({ games, setGames, loading, setLoading, success, setsuccess }) {
     <div className="flex flex-col items-center bg-gradient-to-tr from-gray-800 to-slate-900 px-0 py-20">
       <SearchBar onSearch={handleSearch} />
       <DropdownMenu
-        genres={["All", "MMORPG", "Strategy", "Battle Royale", "Shooter", "Sports", "Fantasy", "Racing", "Card", "Fighting"]} 
+        genres={genres}
         selectedGenre={selectedGenre}
         onGenreChange={handleGenreChange}
       />
