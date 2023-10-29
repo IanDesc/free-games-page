@@ -17,6 +17,7 @@ const SearchBar = ({ onSearch }) => {
     } else {
       setError(""); // Clear any previous error message
       onSearch(query);
+      setQuery(""); // Clear the query after searching
     }
   };
 
@@ -28,6 +29,7 @@ const SearchBar = ({ onSearch }) => {
             type="text"
             placeholder="Pesquise um jogo"
             onChange={handleChange}
+            value={query} // Set the value of the input field to the query state
           />
           <Button onClick={handleSearch}>Search</Button>
         </InputGroup>
