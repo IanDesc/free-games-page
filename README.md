@@ -2,18 +2,18 @@
 
 Lista de tasks:
 
-
-random game
-paginação
-improve Modal
-improve Search e filter
-ContextAPI
-UseMemo in LandingPage
+- random game
+- paginação
+- improve Modal
+- improve Search e filter
+  -Done- ContextAPI
+- UseMemo in LandingPage
 
 - Estilização
 
-    - LandingPage
-    - Card de jogo (Card e lista)
-    - SearchBar e filtro
-    - Botão de RandomGame
-    - Modal
+  -Done- LandingPage
+  -Done- Card de jogo (Card e lista)
+
+  - SearchBar e filtro
+  - Botão de RandomGame
+  - Modal

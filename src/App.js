@@ -36,12 +36,13 @@ function App({ games, setGames, loading, setLoading, success, setsuccess }) {
   };
 
   return (
-    <div>
+    <div class="flex items-center bg-gradient-to-tr from-gray-800 to-slate-900 px-0 py-0">
       <SearchBar onSearch={handleSearch} />
       <GamesList
         games={games.filter((game) => game.title.includes(query))}
         onGameClick={handleGameClick}
       />
+
       {openedGame && <GameModal game={openedGame} onHide={handleCloseModal} />}
     </div>
   );
