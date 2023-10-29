@@ -39,7 +39,7 @@ function App({ games, setGames, loading, setLoading, success, setsuccess }) {
 
   useEffect(() => {
     getGamesList();
-  }, []);
+  });
 
   const handleSearch = (searchQuery) => {
     setQuery(searchQuery);

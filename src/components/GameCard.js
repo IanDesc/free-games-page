@@ -4,7 +4,7 @@ import Card from "react-bootstrap/Card";
 const GameCard = ({ game, onGameClick }) => {
   return (
     <Card
-      className="bg-slate-800 rounded-md drop-shadow hover:drop-shadow-2xl duration-300 hover:scale-105"
+      className="bg-slate-800 rounded-md drop-shadow hover:drop-shadow-2xl duration-300 hover:scale-106"
       // transform transition
       onClick={onGameClick}
     >
