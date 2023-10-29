@@ -1,15 +1,15 @@
-import "./App.css";
-import { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import getDataFromAPI from "./services/api";
 import SearchBar from "./components/SearchBar";
 import GamesList from "./components/GamesList";
-import { useState } from "react";
 import GameModal from "./components/GameModal";
 import { GamesListContext } from "./contexts/GamesContext";
+import DropdownMenu from "./components/DropdownMenu"; // Import the DropdownMenu component
 
 function App({ games, setGames, loading, setLoading, success, setsuccess }) {
   const [query, setQuery] = useState("");
   const [openedGame, setOpenedGame] = useState(null);
+  const [selectedGenre, setSelectedGenre] = useState("All"); // Initialize selectedGenre
 
   const getGamesList = async () => {
     setLoading(true);
@@ -18,14 +18,26 @@ function App({ games, setGames, loading, setLoading, success, setsuccess }) {
     setLoading(false);
     setsuccess(true);
   };
+
   useEffect(() => {
     getGamesList();
-  });
+  }, []); // Add an empty dependency array to run the effect only once
 
   const handleSearch = (searchQuery) => {
     setQuery(searchQuery);
-    // Filter games based on the search query
   };
+
+  const handleGenreChange = (genre) => {
+    setSelectedGenre(genre);
+  };
+
+  const filteredGames = games.filter((game) => {
+    if (selectedGenre === "All") {
+      return game.title.includes(query);
+    } else {
+      return game.title.includes(query) && game.genre === selectedGenre;
+    }
+  });
 
   const handleGameClick = (game) => {
     setOpenedGame(game);
@@ -38,11 +50,12 @@ function App({ games, setGames, loading, setLoading, success, setsuccess }) {
   return (
     <div className="flex flex-col items-center bg-gradient-to-tr from-gray-800 to-slate-900 px-0 py-20">
       <SearchBar onSearch={handleSearch} />
-      <GamesList
-        games={games.filter((game) => game.title.includes(query))}
-        onGameClick={handleGameClick}
+      <DropdownMenu
+        genres={["All", "MMORPG", "Strategy", "Battle Royale", "Shooter", "Sports", "Fantasy", "Racing", "Card", "Fighting"]} 
+        selectedGenre={selectedGenre}
+        onGenreChange={handleGenreChange}
       />
-
+      <GamesList games={filteredGames} onGameClick={handleGameClick} />
       {openedGame && <GameModal game={openedGame} onHide={handleCloseModal} />}
     </div>
   );

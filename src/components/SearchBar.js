@@ -13,7 +13,7 @@ const SearchBar = ({ onSearch }) => {
     <Form>
       <Form.Control
         type="text"
-        placeholder="Search games"
+        placeholder="Pesquise um jogo"
         onChange={handleChange}
       />
     </Form>
