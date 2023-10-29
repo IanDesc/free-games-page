@@ -3,7 +3,7 @@ import GameCard from "./GameCard";
 
 const GamesList = ({ games, onGameClick }) => {
   return (
-    <div class="grid gap-8 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 mt-10 ">
+    <div className="grid gap-8 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 mt-10 ">
       {games.map((game) => (
         <GameCard key={game.id} game={game} onGameClick={onGameClick} />
       ))}
