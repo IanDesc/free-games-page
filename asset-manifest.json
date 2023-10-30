@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/free-games-page/static/css/main.8eec2324.css",
-    "main.js": "/free-games-page/static/js/main.2e5dd802.js",
+    "main.css": "/free-games-page/static/css/main.4dc62e0c.css",
+    "main.js": "/free-games-page/static/js/main.3d6a836e.js",
     "static/js/787.09e390fd.chunk.js": "/free-games-page/static/js/787.09e390fd.chunk.js",
     "static/media/logo.png": "/free-games-page/static/media/logo.7ff3476b20c3018b876a.png",
     "index.html": "/free-games-page/index.html",
-    "main.8eec2324.css.map": "/free-games-page/static/css/main.8eec2324.css.map",
-    "main.2e5dd802.js.map": "/free-games-page/static/js/main.2e5dd802.js.map",
+    "main.4dc62e0c.css.map": "/free-games-page/static/css/main.4dc62e0c.css.map",
+    "main.3d6a836e.js.map": "/free-games-page/static/js/main.3d6a836e.js.map",
     "787.09e390fd.chunk.js.map": "/free-games-page/static/js/787.09e390fd.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.8eec2324.css",
-    "static/js/main.2e5dd802.js"
+    "static/css/main.4dc62e0c.css",
+    "static/js/main.3d6a836e.js"
   ]
 }
