@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { Pagination } from "react-bootstrap";
 
 const CustomPagination = ({ currentPage, totalPages, onPageChange }) => {
-  // Use useMemo to memoize the pages array
+  
   const pages = useMemo(() => {
     const calculatedPages = [];
     for (let i = currentPage - 1; i <= currentPage + 1; i++) {

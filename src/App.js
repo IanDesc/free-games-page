@@ -43,12 +43,12 @@ function App({ games, setGames, loading, setLoading, success, setsuccess }) {
 
   const handleSearch = (searchQuery) => {
     setQuery(searchQuery);
-    setCurrentPage(1); // Reset to the first page when searching
+    setCurrentPage(1); 
   };
 
   const handleGenreChange = (genre) => {
     setSelectedGenre(genre);
-    setCurrentPage(1); // Reset to the first page when changing genre
+    setCurrentPage(1); 
   };
 
   const filteredGames = games.filter((game) => {
