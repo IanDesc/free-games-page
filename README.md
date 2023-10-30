@@ -1,19 +1,9 @@
-# Getting Started with Create React App
+Projeto realizado em React com utilizando React Bootstrap, useMemo durante a paginação e Tailwind
 
-Lista de tasks:
 
-- random game
-- paginação
-- improve Modal
-- improve Search e filter
-  -Done- ContextAPI
-- UseMemo in LandingPage
+Link para o acesso do projeto:
+https://iandesc.github.io/free-games-page/
 
-- Estilização
+Kainã de Freitas Richalski - 2346214
 
-  -Done- LandingPage
-  -Done- Card de jogo (Card e lista)
-
-  - SearchBar e filtro
-  - Botão de RandomGame
-  - Modal
+Ian da Silva Correia - 2417626
