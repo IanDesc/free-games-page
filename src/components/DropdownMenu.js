@@ -17,13 +17,13 @@ const DropdownMenu = ({ genres, selectedGenre, onGenreChange }) => {
         className="bg-blue-500 text-white font-semibold py-2 px-4 rounded inline-flex items-center"
       >
         <span className="mr-1">{selectedGenre}</span>
-        <svg
+        {/* <svg
           className="fill-current h-4 w-4"
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 20 20"
         >
           <path d="M10 12l-6-6h12l-6 6z" />
-        </svg>
+        </svg> */}
       </Dropdown.Toggle>
       {isOpen && (
         <Dropdown.Menu

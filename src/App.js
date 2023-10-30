@@ -6,8 +6,8 @@ import GameModal from "./components/GameModal";
 import { GamesListContext } from "./contexts/GamesContext";
 import DropdownMenu from "./components/DropdownMenu";
 import logo from "./components/logo.png";
-import "bootstrap/dist/css/bootstrap.min.css"; // Import Bootstrap CSS
-import CustomPagination from "./components/CustomPagination"; // Import the modified CustomPagination component
+import "bootstrap/dist/css/bootstrap.min.css";
+import CustomPagination from "./components/CustomPagination";
 
 function App({ games, setGames, loading, setLoading, success, setsuccess }) {
   const [currentPage, setCurrentPage] = useState(1);

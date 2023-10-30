@@ -1,10 +1,8 @@
-import React, { useMemo } from 'react';
-import PropTypes from 'prop-types';
-import { Pagination } from 'react-bootstrap';
+import React, { useMemo } from "react";
+import PropTypes from "prop-types";
+import { Pagination } from "react-bootstrap";
 
 const CustomPagination = ({ currentPage, totalPages, onPageChange }) => {
-  const pagesToShow = 3;
-
   // Use useMemo to memoize the pages array
   const pages = useMemo(() => {
     const calculatedPages = [];
@@ -17,7 +15,7 @@ const CustomPagination = ({ currentPage, totalPages, onPageChange }) => {
   }, [currentPage, totalPages]);
 
   return (
-    <Pagination>
+    <Pagination className="mt-10">
       <Pagination.Prev
         disabled={currentPage === 1}
         onClick={() => onPageChange(currentPage - 1)}
