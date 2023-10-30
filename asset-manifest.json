@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/free-games-page/static/css/main.0a34918c.css",
+    "main.js": "/free-games-page/static/js/main.2e5dd802.js",
+    "static/js/787.09e390fd.chunk.js": "/free-games-page/static/js/787.09e390fd.chunk.js",
+    "static/media/logo.png": "/free-games-page/static/media/logo.7ff3476b20c3018b876a.png",
+    "index.html": "/free-games-page/index.html",
+    "main.0a34918c.css.map": "/free-games-page/static/css/main.0a34918c.css.map",
+    "main.2e5dd802.js.map": "/free-games-page/static/js/main.2e5dd802.js.map",
+    "787.09e390fd.chunk.js.map": "/free-games-page/static/js/787.09e390fd.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.0a34918c.css",
+    "static/js/main.2e5dd802.js"
+  ]
+}
