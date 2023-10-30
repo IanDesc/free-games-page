@@ -6,6 +6,7 @@ import Button from "react-bootstrap/Button";
 const SearchBar = ({ onSearch }) => {
   const [query, setQuery] = useState("");
   const [error, setError] = useState("");
+  const [lastQuery, setLastQuery] = useState("");
 
   const handleChange = (event) => {
     setQuery(event.target.value);
@@ -15,9 +16,12 @@ const SearchBar = ({ onSearch }) => {
     if (query.trim() === "") {
       setError("Insira algo para pesquisar");
     } else {
-      setError(""); // Clear any previous error message
-      onSearch(query);
-      setQuery(""); // Clear the query after searching
+      setError(""); 
+      if (query !== lastQuery) {
+        onSearch(query);
+        setLastQuery(query);
+        setQuery(""); // Limpa a consulta após a pesquisa
+      }
     }
   };
 
@@ -29,20 +33,20 @@ const SearchBar = ({ onSearch }) => {
             type="text"
             placeholder="Pesquise um jogo"
             onChange={handleChange}
-            value={query} // Set the value of the input field to the query state
+            value={query}
+            className="focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-7 pr-12 sm:text-sm border-gray-300 rounded-md"
           />
-          <Button onClick={handleSearch}>Search</Button>
+          <Button
+            onClick={handleSearch}
+            className="focus:ring-indigo-500 focus:border-indigo-500 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700"
+          >
+            Search
+          </Button>
         </InputGroup>
       </Form>
       {error && (
         <div
-          style={{
-            backgroundColor: "yellow",
-            border: "2px solid red",
-            padding: "8px",
-            color: "red",
-            textAlign: "center",
-          }}
+          className="bg-yellow-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mt-2"
         >
           {error}
         </div>
