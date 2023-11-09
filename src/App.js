@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import getDataFromAPI from "./services/api";
 import SearchBar from "./components/SearchBar";
 import GamesList from "./components/GamesList";
@@ -11,7 +11,7 @@ import CustomPagination from "./components/CustomPagination";
 
 function App({ games, setGames, loading, setLoading, success, setsuccess }) {
   const [currentPage, setCurrentPage] = useState(1);
-  const gamesPerPage = 9; // Number of games per page
+  const gamesPerPage = 9; 
 
   const [query, setQuery] = useState("");
   const [openedGame, setOpenedGame] = useState(null);
@@ -39,25 +39,27 @@ function App({ games, setGames, loading, setLoading, success, setsuccess }) {
 
   useEffect(() => {
     getGamesList();
-  });
+  }, []); 
 
   const handleSearch = (searchQuery) => {
     setQuery(searchQuery);
-    setCurrentPage(1); 
+    setCurrentPage(1);
   };
 
   const handleGenreChange = (genre) => {
     setSelectedGenre(genre);
-    setCurrentPage(1); 
+    setCurrentPage(1);
   };
 
-  const filteredGames = games.filter((game) => {
-    if (selectedGenre === "All") {
-      return game.title.includes(query);
-    } else {
-      return game.title.includes(query) && game.genre === selectedGenre;
-    }
-  });
+  const filteredGames = useMemo(() => {
+    return games.filter((game) => {
+      if (selectedGenre === "All") {
+        return game.title.includes(query);
+      } else {
+        return game.title.includes(query) && game.genre === selectedGenre;
+      }
+    });
+  }, [games, query, selectedGenre]);
 
   const handleGameClick = (game) => {
     setOpenedGame(game);
