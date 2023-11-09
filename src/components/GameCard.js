@@ -6,7 +6,7 @@ const GameCard = ({ game, onGameClick }) => {
     <Card
       style={{}}
       className="bg-slate-900 rounded-md drop-shadow hover:drop-shadow-2xl duration-300 hover:scale-110"
-      // transform transition
+      
       onClick={() => onGameClick(game)}
     >
       <Card.Img variant="top" src={game.thumbnail} className="rounded-t-md" />
