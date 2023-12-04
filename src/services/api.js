@@ -1,12 +1,8 @@
-import axios, * as others from "axios";
+import axios from "axios";
 
 const options = {
   method: "GET",
-  url: "https://free-to-play-games-database.p.rapidapi.com/api/games",
-  headers: {
-    "X-RapidAPI-Key": "4dc9284038msh57275a77015e748p16d03ajsn1a36a5ea4e06",
-    "X-RapidAPI-Host": "free-to-play-games-database.p.rapidapi.com",
-  },
+  url: "http://localhost:3002/game",  // Ajuste o URL conforme necessário para a rota específica no seu backend
 };
 
 const getDataFromAPI = async () => {

@@ -10,7 +10,7 @@ const getDataFromAPI = async () => {
   try {
     const response = await axios.request(options);
     console.log(response.data);
-    return response.data;
+    return response.data.obj;
   } catch (error) {
     console.error(error);
   }

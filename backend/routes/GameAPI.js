@@ -19,7 +19,7 @@ router.post("/", authenticateToken, async (req, res) => {
 router.get("/", async (req, res) => {
   try {
     const games = await gameController.list();
-    res.json(success(games, "Listando todos os jogos"));
+    res.json((games));
   } catch (error) {
     console.error(error);
     res.status(500).json(fail("Erro ao listar jogos"));
