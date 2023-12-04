@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useMemo } from "react";
-import getDataFromAPI from "./services/api";
+
 import SearchBar from "./components/SearchBar";
 import GamesList from "./components/GamesList";
 import GameModal from "./components/GameModal";
@@ -10,6 +10,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import CustomPagination from "./components/CustomPagination";
 import LoginModal from "./components/LoginModal";
 import RegisterGameModal from "./components/RegisterGameModal";
+import { getDataFromAPI } from "./services/api";
 
 function App({ games, setGames, loading, setLoading, success, setsuccess }) {
   const [currentPage, setCurrentPage] = useState(1);
