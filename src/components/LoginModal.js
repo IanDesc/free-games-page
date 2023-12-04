@@ -6,12 +6,34 @@ import Modal from "react-bootstrap/Modal";
 function LoginModal({ show, setShow }) {
   const values = [true, "sm-down", "md-down", "lg-down", "xl-down", "xxl-down"];
   const [fullscreen, setFullscreen] = useState(true);
-  //   const [show, setShow] = useState(false);
+  const [error, setError] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
-  function handleShow(breakpoint) {
-    setFullscreen(breakpoint);
-    setShow(true);
-  }
+  const handleSubmitForm = async (event) => {
+    event.preventDefault();
+    setIsLoading(true);
+    try {
+      const formData = new FormData(event.target);
+      const data = Object.fromEntries(formData.entries());
+      // await api
+      //  .post("/associations", data)
+      //  .then(async (result) => {
+      //    console.log(result);
+      //    setIsLoading(false);
+      //    onClose();
+      //  })
+      //  .catch((error) => {
+      //    console.log(error.message);
+      //    setError(true);
+      //    setIsLoading(false);
+      //    throw error;
+      //  });
+      setIsLoading(false);
+    } catch (error) {
+      setError(true);
+      setIsLoading(false);
+    }
+  };
 
   return (
     <>
@@ -31,7 +53,7 @@ function LoginModal({ show, setShow }) {
             </div>
 
             <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-              <form className="space-y-6" action="#" method="POST">
+              <form className="space-y-6" onSubmit={handleSubmitForm}>
                 <div>
                   <label
                     htmlFor="email"
@@ -73,9 +95,16 @@ function LoginModal({ show, setShow }) {
                   </div>
                 </div>
 
+                {error && (
+                  <p className="mt-2 text-xs text-red-600">
+                    Erro ao tentar fazer o login. Verifique os campos e tente
+                    novamente.
+                  </p>
+                )}
+
                 <div>
                   <button
-                    // type="submit"
+                    type="submit"
                     className="flex w-full justify-center rounded-md bg-sky-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-sky-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-600"
                   >
                     Entrar
