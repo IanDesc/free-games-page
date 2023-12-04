@@ -5,8 +5,7 @@ const GameCard = ({ game, onGameClick }) => {
   return (
     <Card
       style={{}}
-      className="bg-slate-900 rounded-md drop-shadow hover:drop-shadow-2xl duration-300 hover:scale-110"
-      
+      className="bg-slate-800 rounded-md drop-shadow hover:drop-shadow-2xl duration-300 hover:scale-110"
       onClick={() => onGameClick(game)}
     >
       <Card.Img variant="top" src={game.thumbnail} className="rounded-t-md" />
