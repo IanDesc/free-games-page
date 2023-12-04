@@ -2,6 +2,7 @@ import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import logo from "./logo.png";
 import Modal from "react-bootstrap/Modal";
+import { postLogin } from "../services/api";
 
 function LoginModal({ show, setShow }) {
   const values = [true, "sm-down", "md-down", "lg-down", "xl-down", "xxl-down"];
@@ -15,19 +16,16 @@ function LoginModal({ show, setShow }) {
     try {
       const formData = new FormData(event.target);
       const data = Object.fromEntries(formData.entries());
-      // await api
-      //  .post("/associations", data)
-      //  .then(async (result) => {
-      //    console.log(result);
-      //    setIsLoading(false);
-      //    onClose();
-      //  })
-      //  .catch((error) => {
-      //    console.log(error.message);
-      //    setError(true);
-      //    setIsLoading(false);
-      //    throw error;
-      //  });
+      await postLogin(data);
+      const token = localStorage.getItem("token");
+
+      if (token) {
+        console.log(token);
+        setShow(false);
+      } else {
+        setError(true);
+        setIsLoading(false);
+      }
       setIsLoading(false);
     } catch (error) {
       setError(true);

@@ -30,7 +30,8 @@ const postLogin = async (obj) => {
   try {
     const response = await axios.post(`${url}/users/login`, { ...obj });
     console.log(response.data);
-    return response.data.token;
+    localStorage.setItem("token", response.data.obj.token);
+    // return response.data.token;
   } catch (error) {
     console.error(error);
   }
