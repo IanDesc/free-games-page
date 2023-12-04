@@ -9,10 +9,10 @@ router.post("/", authenticateToken, async (req, res) => {
 
   try {
     const newGame = await gameController.save(title, short_description, game_url, genre, platform, release_date, publisher);
-    res.json(success(newGame, "Jogo criado com sucesso"));
+    res.json(success(newGame, "Sucesso"));
   } catch (error) {
     console.error(error);
-    res.status(500).json(fail("Erro ao criar jogo"));
+    res.status(500).json(fail("Erro"));
   }
 });
 
@@ -22,7 +22,7 @@ router.get("/", async (req, res) => {
     res.json((games));
   } catch (error) {
     console.error(error);
-    res.status(500).json(fail("Erro ao listar jogos"));
+    res.status(500).json(fail("Erro"));
   }
 });
 
