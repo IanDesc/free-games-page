@@ -1,5 +1,6 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../helpers/bd');
+const { body } = require('express-validator');
 
 const UserModel = sequelize.define('User', {
   id: {
@@ -24,6 +25,10 @@ const UserModel = sequelize.define('User', {
   isAdmin: {
     type: DataTypes.BOOLEAN,
   },
+});
+
+UserModel.addHook('beforeValidate', (user) => {
+  user.email = body('email').trim().escape().normalizeEmail().run(user.email);
 });
 
 module.exports = UserModel;

@@ -4,17 +4,24 @@ const jwt = require('jsonwebtoken');
 const { success, fail } = require("../helpers/resposta");
 const userController = require("../controllers/userController");
 require("dotenv").config();
-
+const bcrypt = require('bcrypt');
 router.post("/login", async (req, res) => {
   const { email, password } = req.body;
 
   try {
     const user = await userController.getByEmail(email);
 
-    if (user && user.password === password) {
-      const token = jwt.sign({ email }, process.env.TOKEN_KEY, { expiresIn: '1h' });
+    if (user) {
+      
+      const passwordMatch = await bcrypt.compare(password, user.password);
 
-      res.json(success({ token }));
+      if (passwordMatch) {
+      
+        const token = jwt.sign({ email }, process.env.TOKEN_KEY, { expiresIn: '1h' });
+        res.json(success({ token }));
+      } else {
+        res.status(401).json(fail("Credenciais inválidas"));
+      }
     } else {
       res.status(401).json(fail("Credenciais inválidas"));
     }
