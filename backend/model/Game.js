@@ -34,7 +34,11 @@ const GameModel = sequelize.define('Game', {
   publisher: {
     type: DataTypes.STRING,
     allowNull: false,
-  }
+  },
+  thumbnail: {
+    type: DataTypes.STRING, 
+    allowNull: true, 
+  },
 });
 
 module.exports = GameModel;

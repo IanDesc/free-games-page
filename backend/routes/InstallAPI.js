@@ -20,7 +20,8 @@ router.get('/', async (req, res) => {
       genre: "Action",
       platform: "PC",
       release_date: new Date("2022-01-01"),
-      publisher: "Publisher 1"
+      publisher: "Publisher 1",
+      thumbnail: "https://picsum.photos/600/300" // Placeholder image from Lorem Picsum
     },
     {
       title: "Game 2",
@@ -29,7 +30,38 @@ router.get('/', async (req, res) => {
       genre: "Adventure",
       platform: "Console",
       release_date: new Date("2022-02-15"),
-      publisher: "Publisher 2"
+      publisher: "Publisher 2",
+      thumbnail: "https://picsum.photos/600/300" // Placeholder image from Lorem Picsum
+    },
+    {
+      title: "Game 3",
+      short_description: "Description 2",
+      game_url: "https://example.com/game2",
+      genre: "Adventure",
+      platform: "Console",
+      release_date: new Date("2022-02-15"),
+      publisher: "Publisher 2",
+      thumbnail: "https://picsum.photos/600/300" // Placeholder image from Lorem Picsum
+    },
+    {
+      title: "Game 4",
+      short_description: "Description 2",
+      game_url: "https://example.com/game2",
+      genre: "Adventure",
+      platform: "Console",
+      release_date: new Date("2022-02-15"),
+      publisher: "Publisher 2",
+      thumbnail: "https://picsum.photos/600/300" // Placeholder image from Lorem Picsum
+    },
+    {
+      title: "Game 345345",
+      short_description: "Description 2",
+      game_url: "https://example.com/game2",
+      genre: "Adventure",
+      platform: "Console",
+      release_date: new Date("2022-02-15"),
+      publisher: "Publisher 2",
+      thumbnail: "https://picsum.photos/600/300" // Placeholder image from Lorem Picsum
     }
   ];
 
@@ -50,7 +82,8 @@ router.get('/', async (req, res) => {
         genre,
         platform,
         release_date,
-        publisher
+        publisher,
+        thumbnail
       } = games[i];
       let createdGame = await gameController.save(
         title,
@@ -59,7 +92,8 @@ router.get('/', async (req, res) => {
         genre,
         platform,
         release_date,
-        publisher
+        publisher,
+        thumbnail
       );
       createdGames.push(createdGame);
     }

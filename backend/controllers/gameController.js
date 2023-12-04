@@ -7,7 +7,7 @@ const gameController = {
     return games;
   },
 
-  save: async function(title, short_description, game_url, genre, platform, release_date, publisher) {
+  save: async function(title, short_description, game_url, genre, platform, release_date, publisher, thumbnail) {
     const game = await GameModel.create({
       title: title,
       short_description: short_description,
@@ -16,11 +16,12 @@ const gameController = {
       platform: platform,
       release_date: release_date,
       publisher: publisher,
+      thumbnail: thumbnail, // Added thumbnail property
     });
     return game;
   },
 
-  update: async function(id, title, short_description, game_url, genre, platform, release_date, publisher) {
+  update: async function(id, title, short_description, game_url, genre, platform, release_date, publisher, thumbnail) {
     const game = await GameModel.findByPk(id);
     if (!game) {
       return false;
@@ -34,6 +35,7 @@ const gameController = {
       platform: platform,
       release_date: release_date,
       publisher: publisher,
+      thumbnail: thumbnail, // Added thumbnail property
     });
 
     return game;
