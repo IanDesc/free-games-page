@@ -11,6 +11,7 @@ import CustomPagination from "./components/CustomPagination";
 import LoginModal from "./components/LoginModal";
 import RegisterGameModal from "./components/RegisterGameModal";
 import { getDataFromAPI } from "./services/api";
+import BannerNewGame from "./components/BannerNewGame";
 
 function App({ games, setGames, loading, setLoading, success, setsuccess }) {
   const [currentPage, setCurrentPage] = useState(1);
@@ -19,7 +20,8 @@ function App({ games, setGames, loading, setLoading, success, setsuccess }) {
   const [query, setQuery] = useState("");
   const [openedGame, setOpenedGame] = useState(null);
   const [openedLoginModal, setOpenedLoginModal] = useState(false);
-  const [openedRegisterGameModal, setOpenedRegisterGameModal] = useState(true);
+  const [bannerVisible, setBannerVisible] = useState(false);
+
   const [selectedGenre, setSelectedGenre] = useState("All");
   const genres = [
     "All",
@@ -57,13 +59,15 @@ function App({ games, setGames, loading, setLoading, success, setsuccess }) {
   };
 
   const filteredGames = useMemo(() => {
-    return games.filter((game) => {
-      if (selectedGenre === "All") {
-        return game.title.includes(query);
-      } else {
-        return game.title.includes(query) && game.genre === selectedGenre;
-      }
-    });
+    if (games) {
+      return games.filter((game) => {
+        if (selectedGenre === "All") {
+          return game.title.includes(query);
+        } else {
+          return game.title.includes(query) && game.genre === selectedGenre;
+        }
+      });
+    }
   }, [games, query, selectedGenre]);
 
   const handleGameClick = (game) => {
@@ -82,20 +86,32 @@ function App({ games, setGames, loading, setLoading, success, setsuccess }) {
     setCurrentPage(page);
   };
 
+  useEffect(() => {
+    window.addEventListener("storage", () => {
+      if (localStorage.getItem("token")) {
+        setBannerVisible(true);
+      } else {
+        setBannerVisible(false);
+      }
+    });
+  }, []);
+
   return (
-    <div className="flex flex-col items-center bg-gradient-to-tr from-gray-800 to-slate-900 px-0 py-20">
-      <LoginModal show={openedLoginModal} setShow={setOpenedLoginModal} />
-      <RegisterGameModal
-        show={openedRegisterGameModal}
-        setShow={setOpenedRegisterGameModal}
-      />
-      <img src={logo} alt="Logo" className="logo" />
-      <SearchBar onSearch={handleSearch} />
-      <DropdownMenu
-        genres={genres}
-        selectedGenre={selectedGenre}
-        onGenreChange={handleGenreChange}
-      />
+    <div className="flex flex-col items-center bg-gradient-to-tr from-gray-800 to-slate-900 px-0 py-20 min-h-screen">
+      <div className="flex flex-row justify-around items-center w-full">
+        <div className="flex flex-row justify-start items-center">
+          <img src={logo} alt="Logo" className="w-12 sm:mr-10 mr-1" />
+          <SearchBar onSearch={handleSearch} />
+          <DropdownMenu
+            genres={genres}
+            selectedGenre={selectedGenre}
+            onGenreChange={handleGenreChange}
+          />
+        </div>
+        <LoginModal show={openedLoginModal} setShow={setOpenedLoginModal} />
+      </div>
+      {bannerVisible ? <BannerNewGame /> : <BannerNewGame />}
+
       <GamesList games={gamesToDisplay} onGameClick={handleGameClick} />
       {openedGame && <GameModal game={openedGame} onHide={handleCloseModal} />}
 

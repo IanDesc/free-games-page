@@ -40,8 +40,12 @@ function RegisterGameModal({ show, setShow }) {
 
   return (
     <>
-      <Button key={"cccc"} className="me-2 mb-2" onClick={() => setShow(true)}>
-        + Adicionar jogo
+      <Button
+        key={"cccc"}
+        className="me-2 mb-2 rounded-full"
+        onClick={() => setShow(true)}
+      >
+        Cadastre um jogo agora <span aria-hidden="true">&rarr;</span>
       </Button>
       <Modal show={show} fullscreen={fullscreen} onHide={() => setShow(false)}>
         <Modal.Header closeButton></Modal.Header>
