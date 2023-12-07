@@ -22,12 +22,12 @@ router.post("/login", async (req, res) => {
         res.json(success({ token }));
       } else {
         // Credenciais inválidas - salvar no banco de dados e publicar no RabbitMQ
-        await saveErrorLog(`Credenciais inválidas para o e-mail ${email}`);
+        await saveErrorLog(`Tentativa falha de login de: ${email}`);
         res.status(401).json(fail("Credenciais inválidas"));
       }
     } else {
       // Credenciais inválidas - salvar no banco de dados e publicar no RabbitMQ
-      await saveErrorLog(`Credenciais inválidas para o e-mail ${email}`);
+      await saveErrorLog(`Tentativa falha de login de: ${email}`);
       res.status(401).json(fail("Credenciais inválidas"));
     }
   } catch (error) {

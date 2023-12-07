@@ -98,13 +98,14 @@ router.get('/', async (req, res) => {
       createdGames.push(createdGame);
     }
 
-    res.json({
+    res.status(200).json({
+      message: "Instalação concluída com sucesso",
       users: createdUsers,
       games: createdGames
     });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: "Erro ao criar o install" });
+    res.status(500).json({ error: "Erro ao criar a instalação" });
   }
 });
 

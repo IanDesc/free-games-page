@@ -1,5 +1,4 @@
-import React, { useEffect, useState, useMemo } from "react";
-
+import React, { useEffect, useState } from "react";
 import SearchBar from "./components/SearchBar";
 import GamesList from "./components/GamesList";
 import GameModal from "./components/GameModal";
@@ -58,24 +57,11 @@ function App({ games, setGames, loading, setLoading, success, setsuccess }) {
     setCurrentPage(1);
   };
 
-  // const filteredGames = useMemo(() => {
-  //   if (typeof games.then !== "function" && typeof games !== "object") {
-  //     return games.filter((game) => {
-  //       if (selectedGenre !== "All") {
-  //         return game.genre === selectedGenre;
-  //       } else {
-  //         return game;
-  //       }
-  //     });
-  //   }
-  // }, [games, selectedGenre]);
-
   const [filteredGames, setFilteredGames] = useState([]);
-
   const [gamesToDisplay, setGamesToDisplay] = useState([]);
   const indexOfLastGame = currentPage * gamesPerPage;
   const indexOfFirstGame = indexOfLastGame - gamesPerPage;
-  // const gamesToDisplay = filteredGames.slice(indexOfFirstGame, indexOfLastGame);
+
   useEffect(() => {
     if (typeof games.then !== "function" && typeof games !== "object") {
       setFilteredGames(
@@ -94,18 +80,16 @@ function App({ games, setGames, loading, setLoading, success, setsuccess }) {
     if (filteredGames) {
       setGamesToDisplay(filteredGames.slice(indexOfFirstGame, indexOfLastGame));
     }
-  }, [filteredGames]);
+  }, [filteredGames, currentPage]);
 
   const handleGameClick = (game) => {
     setOpenedGame(game);
   };
-
-  const handleCloseModal = () => {
-    setOpenedGame(null);
-  };
-
   const handlePageChange = (page) => {
     setCurrentPage(page);
+  };
+  const handleCloseModal = () => {
+    setOpenedGame(null);
   };
 
   useEffect(() => {
@@ -137,16 +121,17 @@ function App({ games, setGames, loading, setLoading, success, setsuccess }) {
         </div>
         <LoginModal show={openedLoginModal} setShow={setOpenedLoginModal} />
       </div>
-      {bannerVisible ? <BannerNewGame /> : <></>}
-
-      <GamesList games={gamesToDisplay} onGameClick={handleGameClick} />
-      {openedGame && <GameModal game={openedGame} onHide={handleCloseModal} />}
-
-      <CustomPagination
-        currentPage={currentPage}
-        totalPages={Math.ceil(filteredGames.length / gamesPerPage)}
-        onPageChange={handlePageChange}
-      />
+      {bannerVisible ? null : (
+        <>
+          <GamesList games={gamesToDisplay} onGameClick={handleGameClick} />
+          {openedGame && <GameModal game={openedGame} onHide={handleCloseModal} />}
+          <CustomPagination
+            currentPage={currentPage}
+            totalPages={Math.ceil(filteredGames.length / gamesPerPage)}
+            onPageChange={handlePageChange}
+          />
+        </>
+      )}
     </div>
   );
 }
