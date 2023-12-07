@@ -63,6 +63,8 @@ function App({ games, setGames, loading, setLoading, success, setsuccess }) {
       return games.filter((game) => {
         if (selectedGenre !== "All") {
           return game.genre === selectedGenre;
+        } else {
+          return game;
         }
       });
     }
