@@ -16,6 +16,20 @@ const getDataFromAPI = async () => {
   }
 };
 
+const getDataFromAPIWithSearch = async (substring) => {
+  try {
+    const options = {
+      method: "GET",
+      url: `${url}/game/search?substring=${substring}`,
+    };
+    const response = await axios.request(options);
+    console.log(response.data);
+    return response.data;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
 const postRegisterGame = async (obj) => {
   try {
     const response = await axios.post(
@@ -45,4 +59,9 @@ const postLogin = async (obj) => {
   }
 };
 
-export { getDataFromAPI, postRegisterGame, postLogin };
+export {
+  getDataFromAPI,
+  postRegisterGame,
+  postLogin,
+  getDataFromAPIWithSearch,
+};

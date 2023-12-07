@@ -10,7 +10,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import CustomPagination from "./components/CustomPagination";
 import LoginModal from "./components/LoginModal";
 import RegisterGameModal from "./components/RegisterGameModal";
-import { getDataFromAPI } from "./services/api";
+import { getDataFromAPI, getDataFromAPIWithSearch } from "./services/api";
 import BannerNewGame from "./components/BannerNewGame";
 
 function App({ games, setGames, loading, setLoading, success, setsuccess }) {
@@ -58,17 +58,37 @@ function App({ games, setGames, loading, setLoading, success, setsuccess }) {
     setCurrentPage(1);
   };
 
-  const filteredGames = useMemo(() => {
-    if (games) {
-      return games.filter((game) => {
-        if (selectedGenre === "All") {
-          return game.title.includes(query);
-        } else {
-          return game.title.includes(query) && game.genre === selectedGenre;
-        }
-      });
+  let filteredGames = useMemo(async () => {
+    if (query.trim() !== "") {
+      if (games) {
+        return games.filter((game) => {
+          if (selectedGenre === "All") {
+            return game;
+          } else {
+            return game.genre === selectedGenre;
+          }
+        });
+      }
+    } else {
+      setLoading(true);
+      const gamesData = await getDataFromAPIWithSearch(query);
+      setLoading(false);
+      setsuccess(true);
+      return gamesData;
     }
   }, [games, query, selectedGenre]);
+
+  const indexOfLastGame = currentPage * gamesPerPage;
+  const indexOfFirstGame = indexOfLastGame - gamesPerPage;
+  const [gamesToDisplay, setGamesToDisplay] = useState(
+    filteredGames.slice(indexOfFirstGame, indexOfLastGame)
+  );
+
+  useEffect(() => {
+    if (filteredGames) {
+      setGamesToDisplay(filteredGames.slice(indexOfFirstGame, indexOfLastGame));
+    }
+  }, [filteredGames]);
 
   const handleGameClick = (game) => {
     setOpenedGame(game);
@@ -77,10 +97,6 @@ function App({ games, setGames, loading, setLoading, success, setsuccess }) {
   const handleCloseModal = () => {
     setOpenedGame(null);
   };
-
-  const indexOfLastGame = currentPage * gamesPerPage;
-  const indexOfFirstGame = indexOfLastGame - gamesPerPage;
-  const gamesToDisplay = filteredGames.slice(indexOfFirstGame, indexOfLastGame);
 
   const handlePageChange = (page) => {
     setCurrentPage(page);
