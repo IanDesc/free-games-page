@@ -58,17 +58,43 @@ function App({ games, setGames, loading, setLoading, success, setsuccess }) {
     setCurrentPage(1);
   };
 
-  const filteredGames = useMemo(() => {
-    if (games) {
-      return games.filter((game) => {
-        if (selectedGenre !== "All") {
-          return game.genre === selectedGenre;
-        } else {
-          return game;
-        }
-      });
+  // const filteredGames = useMemo(() => {
+  //   if (typeof games.then !== "function" && typeof games !== "object") {
+  //     return games.filter((game) => {
+  //       if (selectedGenre !== "All") {
+  //         return game.genre === selectedGenre;
+  //       } else {
+  //         return game;
+  //       }
+  //     });
+  //   }
+  // }, [games, selectedGenre]);
+
+  const [filteredGames, setFilteredGames] = useState([]);
+
+  const [gamesToDisplay, setGamesToDisplay] = useState([]);
+  const indexOfLastGame = currentPage * gamesPerPage;
+  const indexOfFirstGame = indexOfLastGame - gamesPerPage;
+  // const gamesToDisplay = filteredGames.slice(indexOfFirstGame, indexOfLastGame);
+  useEffect(() => {
+    if (typeof games.then !== "function" && typeof games !== "object") {
+      setFilteredGames(
+        games.filter((game) => {
+          if (selectedGenre !== "All") {
+            return game.genre === selectedGenre;
+          } else {
+            return game;
+          }
+        })
+      );
     }
   }, [games, selectedGenre]);
+
+  useEffect(() => {
+    if (filteredGames) {
+      setGamesToDisplay(filteredGames.slice(indexOfFirstGame, indexOfLastGame));
+    }
+  }, [filteredGames]);
 
   const handleGameClick = (game) => {
     setOpenedGame(game);
@@ -77,10 +103,6 @@ function App({ games, setGames, loading, setLoading, success, setsuccess }) {
   const handleCloseModal = () => {
     setOpenedGame(null);
   };
-
-  const indexOfLastGame = currentPage * gamesPerPage;
-  const indexOfFirstGame = indexOfLastGame - gamesPerPage;
-  const gamesToDisplay = filteredGames.slice(indexOfFirstGame, indexOfLastGame);
 
   const handlePageChange = (page) => {
     setCurrentPage(page);
