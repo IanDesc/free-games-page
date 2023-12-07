@@ -91,7 +91,7 @@ router.get("/", async (req, res) => {
               res.json(games);
             });
           } else {
-            res.json(games); // Continuar sem armazenar em cache se a conexão com o Redis falhar
+            res.json(games); 
           }
         } catch (error) {
           console.error('Rota GET: Erro ao obter dados do banco de dados:', error);
@@ -119,10 +119,10 @@ router.get("/search", async (req, res) => {
         } else {
           console.log('Rota SEARCH: Dados armazenados em cache.');
         }
-        res.json(success(games, "Resultados da pesquisa por substring"));
+        res.json(success(games, "Resultados"));
       });
     } else {
-      res.json(success(games, "Resultados da pesquisa por substring")); 
+      res.json(success(games, "Resultados")); 
     }
   } catch (error) {
     console.error('Rota SEARCH: Erro ao obter dados da pesquisa:', error);
