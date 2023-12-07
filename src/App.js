@@ -87,13 +87,11 @@ function App({ games, setGames, loading, setLoading, success, setsuccess }) {
   };
 
   useEffect(() => {
-    window.addEventListener("storage", () => {
-      if (localStorage.getItem("token")) {
-        setBannerVisible(true);
-      } else {
-        setBannerVisible(false);
-      }
-    });
+    if (localStorage.getItem("token")) {
+      setBannerVisible(true);
+    } else {
+      setBannerVisible(false);
+    }
   }, []);
 
   return (
