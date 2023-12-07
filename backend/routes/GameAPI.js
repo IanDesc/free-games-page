@@ -43,11 +43,11 @@ const redisMiddleware = (req, res, next) => {
 
 router.post("/", authenticateToken, redisMiddleware, async (req, res) => {
   console.log('Rota POST: Recebendo solicitação...');
-  const { title, short_description, game_url, genre, platform, release_date, publisher } = req.body;
+  const { title, short_description, game_url, genre, platform, release_date, publisher, thumbnail } = req.body;
 
   try {
     console.log('Rota POST: Tentando salvar no banco de dados...');
-    const newGame = await gameController.save(title, short_description, game_url, genre, platform, release_date, publisher);
+    const newGame = await gameController.save(title, short_description, game_url, genre, platform, release_date, publisher, thumbnail);
     console.log('Rota POST: Operação de salvar no banco de dados concluída.');
 
     console.log('Rota POST: Invalidando o cache após a operação de salvar...');
