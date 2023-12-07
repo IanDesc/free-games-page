@@ -15,7 +15,7 @@ import BannerNewGame from "./components/BannerNewGame";
 
 function App({ games, setGames, loading, setLoading, success, setsuccess }) {
   const [currentPage, setCurrentPage] = useState(1);
-  const gamesPerPage = 9;
+  const gamesPerPage = 6;
 
   const [query, setQuery] = useState("");
   const [openedGame, setOpenedGame] = useState(null);
