@@ -24,7 +24,7 @@ const getDataFromAPIWithSearch = async (substring) => {
     };
     const response = await axios.request(options);
     console.log(response.data);
-    return response.data;
+    return response.data.Resultados;
   } catch (error) {
     console.error(error);
   }
