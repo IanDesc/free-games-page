@@ -23,7 +23,7 @@ const postRegisterGame = async (obj) => {
       { ...obj },
       {
         headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
+          Authorization: `${localStorage.getItem("token")}`,
         },
       }
     );

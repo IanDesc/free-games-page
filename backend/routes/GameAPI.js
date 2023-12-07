@@ -93,7 +93,7 @@ router.get("/", async (req, res) => {
               res.json(games);
             });
           } else {
-            res.json(games); // Continuar sem armazenar em cache se a conexão com o Redis falhar
+            res.json(games);
           }
         } catch (error) {
           console.error('Rota GET: Erro ao obter dados do banco de dados:', error);
