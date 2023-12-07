@@ -60,7 +60,7 @@ function App({ games, setGames, loading, setLoading, success, setsuccess }) {
 
   const [filteredGames, setFilteredGames] = useState([]);
 
-  useEffect(async () => {
+  useEffect(() => {
     if (query.trim() === "") {
       if (games) {
         setFilteredGames(
@@ -74,11 +74,14 @@ function App({ games, setGames, loading, setLoading, success, setsuccess }) {
         );
       }
     } else {
-      setLoading(true);
-      const gamesData = await getDataFromAPIWithSearch(query);
-      setLoading(false);
-      setsuccess(true);
-      setFilteredGames(gamesData);
+      const func = async () => {
+        setLoading(true);
+        const gamesData = await getDataFromAPIWithSearch(query);
+        setLoading(false);
+        setsuccess(true);
+        setFilteredGames(gamesData);
+      };
+      func();
     }
   }, [games, query, selectedGenre]);
 
