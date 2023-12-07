@@ -35,10 +35,24 @@ function LoginModal({ show, setShow }) {
 
   return (
     <>
-      <Button key={"cccc"} className="me-2 mb-2" onClick={() => setShow(true)}>
-        Fazer Login
-        {/* {typeof v === "string" && `below ${v.split("-")[0]}`} */}
-      </Button>
+      {localStorage.getItem("token") ? (
+        <Button
+          key={"cccc"}
+          className="me-2 mb-2 bg-transparent border-white border-2"
+          onClick={() => localStorage.removeItem("token")}
+        >
+          Sair
+        </Button>
+      ) : (
+        <Button
+          key={"cccc"}
+          className="me-2 mb-2 bg-transparent border-white border-2"
+          onClick={() => setShow(true)}
+        >
+          Fazer Login
+        </Button>
+      )}
+
       <Modal show={show} fullscreen={fullscreen} onHide={() => setShow(false)}>
         <Modal.Header closeButton></Modal.Header>
         <Modal.Body>
