@@ -80,11 +80,11 @@ function App({ games, setGames, loading, setLoading, success, setsuccess }) {
 
   const indexOfLastGame = currentPage * gamesPerPage;
   const indexOfFirstGame = indexOfLastGame - gamesPerPage;
-  // const gamesToDisplay = filteredGames.slice(indexOfFirstGame, indexOfLastGame);
+  const gamesToDisplay = filteredGames.slice(indexOfFirstGame, indexOfLastGame);
 
-  // const handlePageChange = (page) => {
-  //   setCurrentPage(page);
-  // };
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+  };
 
   useEffect(() => {
     window.addEventListener("storage", () => {
@@ -112,14 +112,14 @@ function App({ games, setGames, loading, setLoading, success, setsuccess }) {
       </div>
       {bannerVisible ? <BannerNewGame /> : <></>}
 
-      {/* <GamesList games={gamesToDisplay} onGameClick={handleGameClick} /> */}
+      <GamesList games={gamesToDisplay} onGameClick={handleGameClick} />
       {openedGame && <GameModal game={openedGame} onHide={handleCloseModal} />}
 
-      {/* <CustomPagination
+      <CustomPagination
         currentPage={currentPage}
         totalPages={Math.ceil(filteredGames.length / gamesPerPage)}
         onPageChange={handlePageChange}
-      /> */}
+      />
     </div>
   );
 }
