@@ -92,10 +92,12 @@ function App({ games, setGames, loading, setLoading, success, setsuccess }) {
   );
 
   useEffect(() => {
+    const indexOfLastGame = currentPage * gamesPerPage;
+    const indexOfFirstGame = indexOfLastGame - gamesPerPage;
     if (filteredGames) {
       setGamesToDisplay(filteredGames.slice(indexOfFirstGame, indexOfLastGame));
     }
-  }, [filteredGames]);
+  }, [filteredGames, currentPage]);
 
   const handleGameClick = (game) => {
     setOpenedGame(game);
