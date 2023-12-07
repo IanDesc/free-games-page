@@ -119,10 +119,10 @@ router.get("/search", async (req, res) => {
         } else {
           console.log('Rota SEARCH: Dados armazenados em cache.');
         }
-        res.json(success(games, "Resultados"));
+        res.json(games);
       });
     } else {
-      res.json(success(games, "Resultados")); 
+      res.json(games); 
     }
   } catch (error) {
     console.error('Rota SEARCH: Erro ao obter dados da pesquisa:', error);
