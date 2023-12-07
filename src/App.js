@@ -117,7 +117,7 @@ function App({ games, setGames, loading, setLoading, success, setsuccess }) {
       </div>
       {bannerVisible ? <BannerNewGame /> : <></>}
 
-      {/* <GamesList games={gamesToDisplay} onGameClick={handleGameClick} /> */}
+      <GamesList games={gamesToDisplay} onGameClick={handleGameClick} />
       {openedGame && <GameModal game={openedGame} onHide={handleCloseModal} />}
 
       <CustomPagination
