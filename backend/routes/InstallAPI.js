@@ -44,6 +44,46 @@ router.get('/', async (req, res) => {
       publisher: "Publisher 2",
       thumbnail: "https://bnetcmsus-a.akamaihd.net/cms/blog_header/2g/2G4VZH5TIWJF1602720144046.jpg" 
     },
+    {
+      title: "Minecraft",
+      short_description: "Description 2",
+      game_url: "https://example.com/game2",
+      genre: "Adventure",
+      platform: "Console",
+      release_date: new Date("2022-02-15"),
+      publisher: "Publisher 2",
+      thumbnail: "https://t.ctcdn.com.br/pLsPIbom8sGAhdbSIIF2FuUZ8eU=/640x360/smart/i575891.jpeg" 
+    },
+    {
+      title: "The Forest",
+      short_description: "Description 2",
+      game_url: "https://example.com/game2",
+      genre: "Adventure",
+      platform: "Console",
+      release_date: new Date("2022-02-15"),
+      publisher: "Publisher 2",
+      thumbnail: "https://s2-techtudo.glbimg.com/OonmQP9Aiugeql29j_WV1kh4Vgk=/0x0:695x390/984x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_08fbf48bc0524877943fe86e43087e7a/internal_photos/bs/2021/p/x/DiF3RxRY26q83Ea0hWmw/2014-08-04-the-forest-imagem-divulgacao1.jpg" 
+    },
+    {
+      title: "Agario",
+      short_description: "Description 2",
+      game_url: "https://r.agar.io/?party=BYRL2C",
+      genre: "Adventure",
+      platform: "Console",
+      release_date: new Date("2022-02-15"),
+      publisher: "Publisher 2",
+      thumbnail: "https://static.miniclip.com/redirector/public/img/ogimage/agario.png" 
+    },
+    {
+      title: "Valorant",
+      short_description: "Description 2",
+      game_url: "https://example.com/game2",
+      genre: "Adventure",
+      platform: "Console",
+      release_date: new Date("2022-02-15"),
+      publisher: "Publisher 2",
+      thumbnail: "https://images.contentstack.io/v3/assets/bltb6530b271fddd0b1/blt4444ec49c9a9e717/653c18621680320407c39d31/Copy_of_Ep7a3_ISO_Content_Stack_Thumbnail_1200x625_.png" 
+    },
     
   ];
 
