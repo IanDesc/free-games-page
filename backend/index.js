@@ -6,7 +6,7 @@ require("dotenv").config();
 
 const app = express();
 app.use(cors());
-app.use(xss());  // Add this line
+app.use(xss());  
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
 

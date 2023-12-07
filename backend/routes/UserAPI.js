@@ -21,19 +21,18 @@ router.post("/login", async (req, res) => {
         const token = jwt.sign({ email }, process.env.TOKEN_KEY, { expiresIn: '1h' });
         res.json(success({ token }));
       } else {
-        // Credenciais inválidas - salvar no banco de dados e publicar no RabbitMQ
+        
         await saveErrorLog(`Credenciais inválidas para o e-mail ${email}`);
         res.status(401).json(fail("Credenciais inválidas"));
       }
     } else {
-      // Credenciais inválidas - salvar no banco de dados e publicar no RabbitMQ
+      
       await saveErrorLog(`Credenciais inválidas para o e-mail ${email}`);
       res.status(401).json(fail("Credenciais inválidas"));
     }
   } catch (error) {
     console.error(error);
 
-    // Erro no processo de login - salvar no banco de dados e publicar no RabbitMQ
     await saveErrorLog(`Erro no processo de login: ${error.message}`);
     res.status(500).json(fail("Erro no processo de login"));
   }
@@ -41,10 +40,9 @@ router.post("/login", async (req, res) => {
 
 async function saveErrorLog(message) {
   try {
-    // Salvar no banco de dados
+   
     await LogModel.create({ message });
 
-    // Publicar no RabbitMQ
     const rabbit = new RabbitConnect();
     await rabbit.connect();
     await rabbit.publish('error_logs', message);

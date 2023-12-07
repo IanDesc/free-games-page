@@ -51,7 +51,7 @@ const userController = {
     return await UserModel.findOne({ where: { email: email } });
   },
 
-  // Outras funções do controlador, se necessário
+
 };
 
 module.exports = userController;
