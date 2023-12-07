@@ -33,36 +33,7 @@ router.get('/', async (req, res) => {
       publisher: "Publisher 2",
       thumbnail: "https://picsum.photos/600/300" // Placeholder image from Lorem Picsum
     },
-    {
-      title: "Game 3",
-      short_description: "Description 2",
-      game_url: "https://example.com/game2",
-      genre: "Adventure",
-      platform: "Console",
-      release_date: new Date("2022-02-15"),
-      publisher: "Publisher 2",
-      thumbnail: "https://picsum.photos/600/300" // Placeholder image from Lorem Picsum
-    },
-    {
-      title: "Game 4",
-      short_description: "Description 2",
-      game_url: "https://example.com/game2",
-      genre: "Adventure",
-      platform: "Console",
-      release_date: new Date("2022-02-15"),
-      publisher: "Publisher 2",
-      thumbnail: "https://picsum.photos/600/300" // Placeholder image from Lorem Picsum
-    },
-    {
-      title: "Game 345345",
-      short_description: "Description 2",
-      game_url: "https://example.com/game2",
-      genre: "Adventure",
-      platform: "Console",
-      release_date: new Date("2022-02-15"),
-      publisher: "Publisher 2",
-      thumbnail: "https://picsum.photos/600/300" // Placeholder image from Lorem Picsum
-    }
+    // ... (mais jogos)
   ];
 
   try {
@@ -98,13 +69,14 @@ router.get('/', async (req, res) => {
       createdGames.push(createdGame);
     }
 
-    res.json({
+    res.status(200).json({
+      message: "Instalação concluída com sucesso",
       users: createdUsers,
       games: createdGames
     });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: "Erro ao criar o install" });
+    res.status(500).json({ error: "Erro ao criar a instalação" });
   }
 });
 

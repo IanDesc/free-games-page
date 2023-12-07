@@ -61,10 +61,10 @@ router.post("/", authenticateToken, redisMiddleware, async (req, res) => {
       });
     }
     
-    res.json(success(newGame, "Sucesso"));
+    res.status(200).json(success(newGame, "Sucesso ao salvar no banco de dados"));
   } catch (error) {
     console.error('Rota POST: Erro ao salvar no banco de dados:', error);
-    res.status(500).json(fail("Erro"));
+    res.status(500).json(fail("Erro ao salvar no banco de dados"));
   }
 });
 
@@ -74,10 +74,10 @@ router.get("/", async (req, res) => {
     client.get('chave_cache', async (err, cachedData) => {
       if (err) {
         console.error(`Erro ao obter dados do cache: ${err}`);
-        res.status(500).json(fail("Erro"));
+        res.status(500).json(fail("Erro ao obter dados do cache"));
       } else if (cachedData) {
         console.log('Rota GET: Dados obtidos do cache.');
-        res.json(JSON.parse(cachedData));
+        res.status(200).json(JSON.parse(cachedData));
       } else {
         console.log('Rota GET: Dados não encontrados no cache. Buscando no banco de dados...');
         try {
@@ -90,14 +90,14 @@ router.get("/", async (req, res) => {
               } else {
                 console.log('Rota GET: Dados armazenados em cache.');
               }
-              res.json(games);
+              res.status(200).json(games);
             });
           } else {
-            res.json(games);
+            res.status(200).json(games); 
           }
         } catch (error) {
           console.error('Rota GET: Erro ao obter dados do banco de dados:', error);
-          res.status(500).json(fail("Erro"));
+          res.status(500).json(fail("Erro ao obter dados do banco de dados"));
         }
       }
     });
@@ -118,7 +118,6 @@ router.get('/search', async (req, res) => {
     if (ensureRedisConnection()) {
       await rabbitConnect.connect();
       const logMessage = `Rota SEARCH: Pesquisa por substring "${substring}"`;
-
       
       await LogModel.create({ message: logMessage });
 
@@ -133,18 +132,15 @@ router.get('/search', async (req, res) => {
         } else {
           console.log('Rota SEARCH: Dados armazenados em cache.');
         }
-        res.json(success(games, 'Resultados da pesquisa por substring'));
+        res.status(200).json(games);
       });
     } else {
-      res.json(success(games, 'Resultados da pesquisa por substring'));
+      res.status(200).json(games); 
     }
   } catch (error) {
     console.error('Rota SEARCH: Erro ao obter dados da pesquisa:', error);
     res.status(500).json(fail('Erro na pesquisa por substring'));
   }
 });
-
-module.exports = router;
-
 
 module.exports = router;

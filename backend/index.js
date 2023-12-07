@@ -1,13 +1,14 @@
 const express = require("express");
 const path = require("path");
 const cors = require("cors");
+const { xss } = require('express-xss-sanitizer');
 require("dotenv").config();
 
 const app = express();
 app.use(cors());
+app.use(xss());  // Add this line
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
-
 
 const sequelize = require("./helpers/bd");
 const LogModel = require("./model/LogModel");
