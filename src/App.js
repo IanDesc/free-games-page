@@ -101,7 +101,12 @@ function App({ games, setGames, loading, setLoading, success, setsuccess }) {
       <div className="flex flex-row justify-around items-center w-full">
         <div className="flex flex-row justify-start items-center">
           <img src={logo} alt="Logo" className="w-12 sm:mr-10 mr-1" />
-          <SearchBar onSearch={handleSearch} />
+          <SearchBar
+            onSearch={handleSearch}
+            setGames={setGames}
+            setLoading={setLoading}
+            setsuccess={setsuccess}
+          />
           <DropdownMenu
             genres={genres}
             selectedGenre={selectedGenre}

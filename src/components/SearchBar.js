@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
 import Button from "react-bootstrap/Button";
+import { getDataFromAPIWithSearch } from "../services/api";
 
-const SearchBar = ({ onSearch }) => {
+const SearchBar = ({ onSearch, setGames, setLoading, setsuccess }) => {
   const [query, setQuery] = useState("");
   const [error, setError] = useState("");
   const [lastQuery, setLastQuery] = useState("");
@@ -12,15 +13,20 @@ const SearchBar = ({ onSearch }) => {
     setQuery(event.target.value);
   };
 
-  const handleSearch = () => {
+  const handleSearch = async () => {
     if (query.trim() === "") {
       setError("Insira algo para pesquisar");
     } else {
-      setError(""); 
+      setError("");
       if (query !== lastQuery) {
-        onSearch(query);
-        setLastQuery(query);
-        setQuery(""); 
+        setLoading(true);
+        const newData = getDataFromAPIWithSearch(query);
+        setGames(newData);
+        setLoading(false);
+        setsuccess(true);
+        // onSearch(query);
+        // setLastQuery(query);
+        // setQuery("");
       }
     }
   };
@@ -45,9 +51,7 @@ const SearchBar = ({ onSearch }) => {
         </InputGroup>
       </Form>
       {error && (
-        <div
-          className="bg-yellow-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mt-2"
-        >
+        <div className="bg-yellow-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mt-2">
           {error}
         </div>
       )}
