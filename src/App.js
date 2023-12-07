@@ -61,14 +61,12 @@ function App({ games, setGames, loading, setLoading, success, setsuccess }) {
   const filteredGames = useMemo(() => {
     if (games) {
       return games.filter((game) => {
-        if (selectedGenre === "All") {
-          return game.title.includes(query);
-        } else {
-          return game.title.includes(query) && game.genre === selectedGenre;
+        if (selectedGenre !== "All") {
+          return game.genre === selectedGenre;
         }
       });
     }
-  }, [games, query, selectedGenre]);
+  }, [games, selectedGenre]);
 
   const handleGameClick = (game) => {
     setOpenedGame(game);
