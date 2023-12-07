@@ -58,23 +58,27 @@ function App({ games, setGames, loading, setLoading, success, setsuccess }) {
     setCurrentPage(1);
   };
 
-  let filteredGames = useMemo(async () => {
+  const [filteredGames, setFilteredGames] = useState([]);
+
+  useEffect(async () => {
     if (query.trim() === "") {
       if (games) {
-        return games.filter((game) => {
-          if (selectedGenre === "All") {
-            return game;
-          } else {
-            return game.genre === selectedGenre;
-          }
-        });
+        setFilteredGames(
+          games.filter((game) => {
+            if (selectedGenre === "All") {
+              return game;
+            } else {
+              return game.genre === selectedGenre;
+            }
+          })
+        );
       }
     } else {
       setLoading(true);
       const gamesData = await getDataFromAPIWithSearch(query);
       setLoading(false);
       setsuccess(true);
-      return gamesData;
+      setFilteredGames(gamesData);
     }
   }, [games, query, selectedGenre]);
 
