@@ -59,7 +59,7 @@ function App({ games, setGames, loading, setLoading, success, setsuccess }) {
   };
 
   let filteredGames = useMemo(async () => {
-    if (query.trim() !== "") {
+    if (query.trim() === "") {
       if (games) {
         return games.filter((game) => {
           if (selectedGenre === "All") {
