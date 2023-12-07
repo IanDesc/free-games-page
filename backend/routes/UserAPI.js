@@ -5,6 +5,8 @@ const { success, fail } = require("../helpers/resposta");
 const userController = require("../controllers/userController");
 require("dotenv").config();
 const bcrypt = require('bcrypt');
+
+
 router.post("/login", async (req, res) => {
   const { email, password } = req.body;
 

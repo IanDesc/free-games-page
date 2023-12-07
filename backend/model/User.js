@@ -27,8 +27,5 @@ const UserModel = sequelize.define('User', {
   },
 });
 
-UserModel.addHook('beforeValidate', (user) => {
-  user.email = body('email').trim().escape().normalizeEmail().run(user.email);
-});
 
 module.exports = UserModel;
