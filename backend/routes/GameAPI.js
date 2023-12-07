@@ -3,7 +3,9 @@ const router = express.Router();
 const gameController = require("../controllers/gameController");
 const { success, fail } = require("../helpers/resposta");
 const { authenticateToken } = require("../auth/gameAuth");
-
+const RabbitConnect = require('../helpers/rabbitconnect');
+const rabbitConnect = new RabbitConnect();
+const LogModel = require('../model/LogModel');
 const redis = require('redis');
 const client = redis.createClient({
   host: 'localhost',
@@ -104,7 +106,7 @@ router.get("/", async (req, res) => {
   }
 });
 
-router.get("/search", async (req, res) => {
+router.get('/search', async (req, res) => {
   console.log('Rota SEARCH: Recebendo solicitação...');
   const { substring } = req.query;
 
@@ -112,6 +114,18 @@ router.get("/search", async (req, res) => {
     console.log('Rota SEARCH: Tentando obter dados do cache de pesquisa...');
     const games = await gameController.searchBySubstring(substring);
     console.log('Rota SEARCH: Dados obtidos da pesquisa. Armazenando em cache...');
+
+    if (ensureRedisConnection()) {
+      await rabbitConnect.connect();
+      const logMessage = `Rota SEARCH: Pesquisa por substring "${substring}"`;
+
+      
+      await LogModel.create({ message: logMessage });
+
+      await rabbitConnect.publish('logs', logMessage);
+      await rabbitConnect.close();
+    }
+
     if (ensureRedisConnection()) {
       client.setex('chave_cache_search', 300, JSON.stringify(games), (err) => {
         if (err) {
@@ -126,8 +140,11 @@ router.get("/search", async (req, res) => {
     }
   } catch (error) {
     console.error('Rota SEARCH: Erro ao obter dados da pesquisa:', error);
-    res.status(500).json(fail("Erro na pesquisa por substring"));
+    res.status(500).json(fail('Erro na pesquisa por substring'));
   }
 });
+
+module.exports = router;
+
 
 module.exports = router;

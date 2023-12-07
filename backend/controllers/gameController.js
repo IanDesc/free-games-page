@@ -1,6 +1,7 @@
 const { Sequelize, Op } = require('sequelize');
 const GameModel = require('../model/Game');
 
+
 const gameController = {
   list: async function() {
     const games = await GameModel.findAll();
@@ -16,7 +17,7 @@ const gameController = {
       platform: platform,
       release_date: release_date,
       publisher: publisher,
-      thumbnail: thumbnail, // Added thumbnail property
+      thumbnail: thumbnail, 
     });
     return game;
   },
@@ -35,7 +36,7 @@ const gameController = {
       platform: platform,
       release_date: release_date,
       publisher: publisher,
-      thumbnail: thumbnail, // Added thumbnail property
+      thumbnail: thumbnail, 
     });
 
     return game;
