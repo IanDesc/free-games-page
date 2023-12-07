@@ -121,7 +121,14 @@ function App({ games, setGames, loading, setLoading, success, setsuccess }) {
     <div className="flex flex-col items-center bg-gradient-to-tr from-gray-800 to-slate-900 px-0 py-20 min-h-screen">
       <div className="flex flex-row justify-around items-center w-full">
         <div className="flex flex-row justify-start items-center">
-          <img src={logo} alt="Logo" className="w-12 sm:mr-10 mr-1" />
+          <img
+            src={logo}
+            alt="Logo"
+            className="w-12 sm:mr-10 mr-1"
+            onClick={() => {
+              window.location.reload();
+            }}
+          />
           <SearchBar onSearch={handleSearch} />
           <DropdownMenu
             genres={genres}
