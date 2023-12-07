@@ -54,7 +54,7 @@ function RegisterGameModal({ show, setShow }) {
                 <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
                   <div className="sm:col-span-4">
                     <label
-                      htmlFor="username"
+                      htmlFor="title"
                       className="block text-sm font-medium leading-6 text-gray-900"
                     >
                       Título
@@ -62,7 +62,7 @@ function RegisterGameModal({ show, setShow }) {
                     <div className="mt-2">
                       <div className="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-sky-600 sm:max-w-md">
                         <input
-                          type="text"
+                          type="title"
                           name="title"
                           id="title"
                           autoComplete="title"
@@ -190,16 +190,16 @@ function RegisterGameModal({ show, setShow }) {
 
                   <div className="sm:col-span-3">
                     <label
-                      htmlFor="plataform"
+                      htmlFor="platform"
                       className="block text-sm font-medium leading-6 text-gray-900"
                     >
                       Plataforma
                     </label>
                     <div className="mt-2">
                       <select
-                        id="plataform"
-                        name="plataform"
-                        autoComplete="plataform"
+                        id="platform"
+                        name="platform"
+                        autoComplete="platform"
                         required
                         className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:max-w-xs sm:text-sm sm:leading-6"
                       >
