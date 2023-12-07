@@ -4,6 +4,7 @@ import logo from "./logo.png";
 import Modal from "react-bootstrap/Modal";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { postRegisterGame } from "../services/api";
 
 function RegisterGameModal({ show, setShow }) {
   const [fullscreen, setFullscreen] = useState(true);
@@ -18,20 +19,9 @@ function RegisterGameModal({ show, setShow }) {
       const formData = new FormData(event.target);
       const data = Object.fromEntries(formData.entries());
       data.release_date = selectedDate.toDateString();
-      // await api
-      //  .post("/associations", data)
-      //  .then(async (result) => {
-      //    console.log(result);
-      //    setIsLoading(false);
-      //    onClose();
-      //  })
-      //  .catch((error) => {
-      //    console.log(error.message);
-      //    setError(true);
-      //    setIsLoading(false);
-      //    throw error;
-      //  });
+      await postRegisterGame(data);
       setIsLoading(false);
+      setShow(false);
     } catch (error) {
       setError(true);
       setIsLoading(false);
@@ -118,6 +108,28 @@ function RegisterGameModal({ show, setShow }) {
                           name="game_url"
                           id="game_url"
                           autoComplete="game_url"
+                          className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
+                          placeholder="http://"
+                          required
+                        />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="sm:col-span-3">
+                    <label
+                      htmlFor="thumbnail"
+                      className="block text-sm font-medium leading-6 text-gray-900"
+                    >
+                      URL da Imagem de Capa
+                    </label>
+                    <div className="mt-2">
+                      <div className="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-sky-600 sm:max-w-md">
+                        <input
+                          type="thumbnail"
+                          name="thumbnail"
+                          id="thumbnail"
+                          autoComplete="thumbnail"
                           className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
                           placeholder="http://"
                           required

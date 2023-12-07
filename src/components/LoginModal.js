@@ -5,7 +5,6 @@ import Modal from "react-bootstrap/Modal";
 import { postLogin } from "../services/api";
 
 function LoginModal({ show, setShow }) {
-  const values = [true, "sm-down", "md-down", "lg-down", "xl-down", "xxl-down"];
   const [fullscreen, setFullscreen] = useState(true);
   const [error, setError] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -21,6 +20,7 @@ function LoginModal({ show, setShow }) {
 
       if (token) {
         console.log(token);
+        window.location.reload();
         setShow(false);
       } else {
         setError(true);
@@ -39,7 +39,10 @@ function LoginModal({ show, setShow }) {
         <Button
           key={"cccc"}
           className="me-2 mb-2 bg-transparent border-white border-2"
-          onClick={() => localStorage.removeItem("token")}
+          onClick={() => {
+            localStorage.removeItem("token");
+            window.location.reload();
+          }}
         >
           Sair
         </Button>

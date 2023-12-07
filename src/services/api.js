@@ -18,7 +18,15 @@ const getDataFromAPI = async () => {
 
 const postRegisterGame = async (obj) => {
   try {
-    const response = await axios.post(`${url}/game`, { ...obj });
+    const response = await axios.post(
+      `${url}/game`,
+      { ...obj },
+      {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      }
+    );
     console.log(response.data);
     return response.data;
   } catch (error) {
