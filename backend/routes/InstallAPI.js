@@ -14,26 +14,37 @@ router.get('/', async (req, res) => {
 
   let games = [
     {
-      title: "Game 1",
-      short_description: "Description 1",
+      title: "League of Legends",
+      short_description: "A cool and a Fun game",
       game_url: "https://example.com/game1",
       genre: "Action",
       platform: "PC",
       release_date: new Date("2022-01-01"),
       publisher: "Publisher 1",
-      thumbnail: "https://picsum.photos/600/300" // Placeholder image from Lorem Picsum
+      thumbnail: "https://cdn1.epicgames.com/offer/24b9b5e323bc40eea252a10cdd3b2f10/EGS_LeagueofLegends_RiotGames_S1_2560x1440-872a966297484acd0efe49f34edd5aed" 
     },
+    
     {
-      title: "Game 2",
+      title: "GTA V",
       short_description: "Description 2",
       game_url: "https://example.com/game2",
       genre: "Adventure",
       platform: "Console",
       release_date: new Date("2022-02-15"),
       publisher: "Publisher 2",
-      thumbnail: "https://picsum.photos/600/300" // Placeholder image from Lorem Picsum
+      thumbnail: "https://t.ctcdn.com.br/3DEs5RmSBHOMfVdyQGLSidyGj-Y=/291x28:1737x842/1446x813/smart/i328744.jpeg" 
     },
-    // ... (mais jogos)
+    {
+      title: "Starcraft 2",
+      short_description: "Description 2",
+      game_url: "https://example.com/game2",
+      genre: "Adventure",
+      platform: "Console",
+      release_date: new Date("2022-02-15"),
+      publisher: "Publisher 2",
+      thumbnail: "https://bnetcmsus-a.akamaihd.net/cms/blog_header/2g/2G4VZH5TIWJF1602720144046.jpg" 
+    },
+    
   ];
 
   try {
